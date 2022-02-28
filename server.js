@@ -24,4 +24,4 @@ app.get('/', mongoInit, (req,res) =>{
 } 
 )
 
-app.listen(3000);
+app.listen(process.env.CONSTRING);
