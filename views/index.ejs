@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kshik Blog</title>
+
+    <style type="text/css">
+
+        h1{
+            font-family: sans-serif;
+            font-size: 90px;
+        }
+
+        h2{
+            font-family: sans-serif;
+            font-size: 40px;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+        h3{
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+        h4{
+            font-family: sans-serif;
+            font-size: 16px;
+        }
+        p{
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 140%;
+        }
+        .bodyArea{
+            display: grid;
+            grid-template-columns: 5% 50% 30%;
+            grid-template-rows: 50px repeat(100,auto);
+            align-items: baseline;
+            grid-gap: 10px;
+        }
+        .artNav{
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 200%;
+        }
+        .headerArea{
+            grid-column: 2/3;
+            grid-row: 2;
+            font-family: sans-serif;
+        }
+        .itemList{
+            grid-column: 3/4;
+            grid-row: 2;
+            font-size: 24px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>      
+
+    <div class="bodyArea">
+
+        <div class="headerArea">
+            <h1>Koushik Murali</h1>
+            <% articles.forEach(results => {  %>
+                <div><h2> <%= results.title %> </h2></div>
+                <div><h3><%= results.author %></h3></div>
+                <div><h4><%= results.date.toLocaleDateString() %></h4></div>
+                <div><p><%= results.body %></p></div>
+                <% }) %>   
+        </div>
+        <div class="itemList">
+            
+            <% articles.forEach(results => {  %>
+               <div class="artNav"> <%= results.title %> </div>
+                <% }) %> 
+        
+        
+        </div>
+
+    </div>
+
+   
+</body>
+</html>
