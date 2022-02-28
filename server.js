@@ -24,4 +24,4 @@ app.get('/', mongoInit, (req,res) =>{
 } 
 )
 
-app.listen(process.env.CONSTRING);
+app.listen(process.env.PORT);
