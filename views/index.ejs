@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kshik Blog</title>
+    <title>Koushik Murali</title>
 
     <style type="text/css">
-
+        html{
+            scroll-behavior: smooth;
+        }
         h1{
             font-family: sans-serif;
             font-size: 90px;
@@ -15,45 +17,89 @@
 
         h2{
             font-family: sans-serif;
-            font-size: 40px;
+            font-size: 32px;
             padding-bottom: 0px;
             margin-bottom: 0px;
         }
         h3{
             font-family: sans-serif;
             font-size: 20px;
+            margin-bottom: 0px;
         }
         h4{
             font-family: sans-serif;
             font-size: 16px;
+            font-weight:bold;
         }
         p{
             font-family: sans-serif;
             font-size: 16px;
             line-height: 140%;
         }
+        .artBody{
+            margin-bottom: 50px;
+        }
         .bodyArea{
+            font-family: sans-serif;
             display: grid;
-            grid-template-columns: 5% 50% 30%;
-            grid-template-rows: 50px repeat(100,auto);
+            grid-template-columns: 5% 20% 40%;
+            grid-template-rows: repeat( <%= articles.length %> , auto);
             align-items: baseline;
-            grid-gap: 10px;
+            column-gap: 30px;
         }
         .artNav{
             font-family: sans-serif;
             font-size: 14px;
             line-height: 200%;
+            align-items: baseline;
+            margin-top: auto;
         }
         .headerArea{
-            grid-column: 2/3;
-            grid-row: 2;
-            font-family: sans-serif;
-        }
-        .itemList{
             grid-column: 3/4;
+            grid-row: 2;
+            display: grid;
+            grid-template-rows: repeat( <%= articles.length %> , auto);
+            align-items: baseline;
+            row-gap: 2px;
+            
+        }
+        .leftNav{
+            grid-column: 2/3;
             grid-row: 2;
             font-size: 24px;
             font-family: sans-serif;
+            align-items: baseline;
+            position: sticky;
+            top: 0;
+        }
+
+        @media only screen and (max-width: 1400px) {
+            
+            .bodyArea{
+            display: grid;
+            grid-template-columns: 5% 25% 60%;
+        }
+
+        }
+        @media only screen and (max-width: 1000px) {
+            .leftNav{
+            grid-column: 2/3;
+            top: 0;
+            position: static;
+        }
+        .headerArea{
+            grid-column: 2/3;
+            grid-row: 3;
+            font-family: sans-serif;
+        }
+            
+            .bodyArea{
+            display: grid;
+            grid-template-columns: 3% 90% 3%;
+        }
+        .artBody{
+            margin-bottom: 30px;
+        }
         }
     </style>
 </head>
@@ -61,23 +107,25 @@
 
     <div class="bodyArea">
 
-        <div class="headerArea">
-            <h1>Koushik Murali</h1>
+        <div class="leftNav">
+            <h3>Koushik Murali</h3>
+            <p>I am a designer based out of Coimbatore.</p>
+            <p>Currently I work at <a href="https://hasura.io">Hasura</a> as a Graphic Designer</p>
+            <p>Occassionally I like to write on topics around design and art.</p>
+            <h4>List of articles</h4>
             <% articles.forEach(results => {  %>
-                <div><h2> <%= results.title %> </h2></div>
-                <div><h3><%= results.author %></h3></div>
-                <div><h4><%= results.date.toLocaleDateString() %></h4></div>
-                <div><p><%= results.body %></p></div>
-                <% }) %>   
-        </div>
-        <div class="itemList">
-            
-            <% articles.forEach(results => {  %>
-               <div class="artNav"> <%= results.title %> </div>
+               <div class="artNav"> <li type="ul"><a href= "<%= "#" + results.Slugify %>"><%= results.title %></a></li></div>
                 <% }) %> 
-        
-        
         </div>
+
+        <div class="headerArea">
+            <% articles.forEach(results => {  %>
+                <div id="<%= results.Slugify %>"><h3> <%= results.title %> </h3></div>
+                <div><h4><%= results.author %> published on <%= results.date.toLocaleDateString() %></h4></div>
+                    <div class="artBody"><p><%- results.sanitizedHTML %></p> <p>[<a href="#">go to top</a>]</p></div>
+                <% }) %>  
+        </div>
+
 
     </div>
 
