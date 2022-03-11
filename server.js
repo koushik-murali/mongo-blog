@@ -3,6 +3,7 @@ const app = express();
 const article = require('./articles')   
 const dotenv = require('dotenv');
 const Mongoose = require('mongoose');
+const serverless = require('serverless-http')
 dotenv.config();
 Mongoose.connect(process.env.CONSTRING, {useNewUrlParser: true, useUnifiedTopology: true,})
 
@@ -21,4 +22,6 @@ app.get('/', async (req, res) =>{
 } 
 )
 
-app.listen(process.env.PORT || 3000);
+module.exports.handler = serverless(app)
+
+// app.listen(process.env.PORT || 3000);

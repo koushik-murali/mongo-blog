@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "start": "/node_modules/.bin/netlify-lambda serve src",
+    "build": "/node_modules/.bin/netlify-lambda build src"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,8 @@
     "marked": "^4.0.12",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.1",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^2.7.0",
     "showdown": "^2.0.1",
     "slugify": "^1.6.5"
   },
