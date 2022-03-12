@@ -1,5 +1,5 @@
 {
     "version": 8,
-    "build": [{"src": "server.js", "use":"@node/node-server"}]
+    "build": {"src": "server.js", "use":"@node/node-server"}
 
 }
