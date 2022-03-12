@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const article = require('./articles')   
+const article = require('./articles')
+const images = require('./pictures')
 const dotenv = require('dotenv');
 const Mongoose = require('mongoose');
 const serverless = require('serverless-http')
@@ -12,7 +13,8 @@ app.set('view engine', 'ejs')
 app.get('/', async (req, res) =>{
     try{
         const articles = await article.find()
-        res.render('index', {articles: articles})
+        const websiteImages = await images.find()
+        res.render('home', { Pictures: websiteImages, articles: articles})
     } catch(e)
     {
         console.log(e)

@@ -44,7 +44,6 @@
             display: grid;
             grid-template-columns: 5% 20% 40%;
             grid-template-rows: repeat( <%= articles.length %> , auto);
-            align-items: baseline;
             column-gap: 30px;
         }
         .artNav{
@@ -54,23 +53,37 @@
             align-items: baseline;
             margin-top: auto;
         }
+
         .headerArea{
             grid-column: 3/4;
-            grid-row: 2;
+            grid-row: 1;
             display: grid;
             grid-template-rows: repeat( <%= articles.length %> , auto);
             align-items: baseline;
             row-gap: 2px;
+            height: 100vh;
+            overflow: scroll;
+            scroll-behavior: smooth;
             
         }
         .leftNav{
             grid-column: 2/3;
-            grid-row: 2;
+            grid-row: 1;
             font-size: 24px;
             font-family: sans-serif;
-            align-items: baseline;
-            position: sticky;
-            top: 0;
+            height: 100vh;
+            overflow: scroll;
+            
+        }
+        .headerArea::-webkit-scrollbar {
+            display: none;
+        }
+        .leftNav::-webkit-scrollbar {
+            display: none;
+        }
+        #profilePic{
+            border-radius: 16px;
+            margin-top: 20px;
         }
 
         @media only screen and (max-width: 1400px) {
@@ -81,21 +94,21 @@
         }
 
         }
-        @media only screen and (max-width: 1000px) {
+        @media only screen and (max-width: 800px) {
             .leftNav{
-            grid-column: 2/3;
-            top: 0;
-            position: static;
+            grid-row: 1;
+    
         }
         .headerArea{
             grid-column: 2/3;
-            grid-row: 3;
             font-family: sans-serif;
+            grid-row: 2;
+            overflow: unset;
         }
             
             .bodyArea{
             display: grid;
-            grid-template-columns: 3% 90% 3%;
+            grid-template-columns: auto 90% auto;
         }
         .artBody{
             margin-bottom: 30px;
@@ -107,10 +120,13 @@
 
     <div class="bodyArea">
 
-        <div class="leftNav">
+        <div class="leftNav" id="leftNav">
             <h3>Koushik Murali</h3>
+
+            <div id="profilePic"><img src = "<%= Pictures[0].image%>" width="50%"></div>
+
             <p>I am a designer based out of Coimbatore.</p>
-            <p>Currently I work at <a href="https://hasura.io">Hasura</a> as a Graphic Designer</p>
+            <p>Currently I work at <a href="https://hasura.io" target="blank">Hasura</a> as a Graphic Designer</p>
             <p>Occassionally I like to write on topics around design and art.</p>
             <h4>List of articles</h4>
             <% articles.forEach(results => {  %>
@@ -122,7 +138,7 @@
             <% articles.forEach(results => {  %>
                 <div id="<%= results.Slugify %>"><h3> <%= results.title %> </h3></div>
                 <div><h4><%= results.author %> published on <%= results.date.toLocaleDateString() %></h4></div>
-                    <div class="artBody"><p><%- results.sanitizedHTML %></p> <p>[<a href="#">go to top</a>]</p></div>
+                    <div class="artBody"><p><%- results.sanitizedHTML %></p> <p>[<a href="<%= "#" + articles[0].Slugify %>">go to top</a>]</p></div>
                 <% }) %>  
         </div>
 

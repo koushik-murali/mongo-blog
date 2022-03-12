@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Koushik Murali</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        #bodyContainer{
+            display: flex;
+            flex-direction: column;
+            font-family: 'Zilla Slab', serif;
+            height: 100vh;
+            padding: 5%;
+            
+        }
+        h3{
+            font-size: 32px;
+        }
+        #articleContent{
+            padding-top: 50px;
+        }
+        .profilePic{
+            border-radius: 20px;
+            object-fit: cover;
+            width: 200px;
+            height: 250px;
+        }
+        #pp{
+            width: 200px;
+            height: 250px;
+        }
+        p{
+            font-size: 20px;
+            line-height: 140%;
+        }
+        li{
+            font-size: 20px;
+            line-height: 140%;
+        }
+        @media only screen and (min-width: 1000px) {
+
+            body{
+            overflow: hidden;
+        }
+        #bodyContainer{
+            display: flex;
+            flex-direction: row;
+            font-family: 'Zilla Slab', serif;
+            padding-top: 5%;
+            height: 100vh;
+            
+        }
+        #leftNav{
+            flex: 1;
+            overflow-y: scroll;
+            margin-left: 2%;
+            justify-content:start;
+            
+        }
+        #leftNav::-webkit-scrollbar {
+            display: none;
+        }
+        #articleContent{
+            flex: 2;
+            margin-right: 30%;
+            overflow-y: scroll;
+            justify-content:start;
+            padding-top: 0;
+        }
+        #articleContent::-webkit-scrollbar {
+            display: none;
+        }
+        .profilePic{
+            border-radius: 20px;
+            object-fit: cover;
+            width: 200px;
+        }
+        #pp{
+            width: 200px;
+            height: 250px;
+        }
+
+            
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="bodyContainer">
+
+        <div id="leftNav">
+            <h3>Koushik Murali</h3>
+            <div id="pp"><img class="profilePic"" src = "<%= Pictures[0].image%>"></div>
+            <p>I am a designer based out of Coimbatore. Currently I work at <a href="https://hasura.io" target="blank">Hasura</a> as a Graphic Designer. Occassionally I like to write on topics around design and art.</p>
+            <p>List of articles</p>
+            <% articles.forEach(results => {  %>
+               <div class="artNav"> <li type="ul"><a href= "<%= "#" + results.Slugify %>"><%= results.title %></a></li></div>
+                <% }) %> 
+        </div>
+
+        <div id="articleContent">
+            <% articles.forEach(results => {  %>
+                <div id="<%= results.Slugify %>"><h3> <%= results.title %> </h3></div>
+                <div><h4><%= results.author %> published on <%= results.date.toLocaleDateString() %></h4></div>
+                    <div class="artBody"><p><%- results.sanitizedHTML %></p> <p>[<a href="<%= "#" + articles[0].Slugify %>">go to top</a>]</p></div>
+                <% }) %>  
+        </div>
+
+    </div>
+</body>
+</html>
