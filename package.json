@@ -14,13 +14,14 @@
     "dompurify": "^2.3.6",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "jsdom": "^19.0.0",
     "markdown-it": "^12.3.2",
     "marked": "^4.0.12",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.1",
-    "slugify": "^1.6.5"  },
+    "slugify": "^1.6.5"
+  },
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
