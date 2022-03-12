@@ -19,12 +19,7 @@
     "marked": "^4.0.12",
     "mongodb": "^4.4.0",
     "mongoose": "^6.2.1",
-    "netlify-lambda": "^2.0.15",
-    "serverless-http": "^2.7.0",
-    "showdown": "^2.0.1",
-    "slugify": "^1.6.5",
-    "vercel": "^24.0.0"
-  },
+    "slugify": "^1.6.5"  },
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
